@@ -5,7 +5,7 @@ const timeTitle = clockContainer.querySelector("h2");
 function getTime() {
     const _date = new Date();
     const year = _date.getFullYear();
-    const month = _date.getMonth();
+    const month = _date.getMonth() + 1;
     const date = _date.getDate();
     const day = _date.getDay();
     const weekday = ['일', '월', '화', '수', '목', '금', '토'];
