@@ -1,10 +1,11 @@
-const { gql } = require('apollo-server')
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
-    type Mutation {
-      deleteEquipment(id: String): Equipment
-      deleteSupply(id: String): Supply
-    }
-`
+  type Mutation {
+    postPerson(input: PostPersonInput): People!
+    deleteEquipment(id: String): Equipment
+    deleteSupply(id: String): Supply
+  }
+`;
 
-module.exports = typeDefs
+module.exports = typeDefs;
