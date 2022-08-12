@@ -4,10 +4,12 @@ let tweets = [
   {
     id: "1",
     text: "one",
+    userId: "2",
   },
   {
     id: "2",
     text: "two",
+    userId: "1",
   },
 ];
 
@@ -60,6 +62,7 @@ const resolvers = {
       const newTweet = {
         id: `${parseInt(tweets[tweets.length - 1].id) + 1}`,
         text,
+        userId,
       };
       tweets.push(newTweet);
       return newTweet;
@@ -73,6 +76,9 @@ const resolvers = {
   },
   User: {
     fullName: ({ firstName, lastName }) => `${firstName} ${lastName}`,
+  },
+  Tweet: {
+    author: ({ userId }) => users.find((user) => user.id === userId),
   },
 };
 
