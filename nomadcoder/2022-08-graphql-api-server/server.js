@@ -15,6 +15,11 @@ const typeDefs = gql`
     allTweets: [Tweet]
     tweet(id: ID): Tweet
   }
+
+  type Mutaion {
+    postTweet(text: String, userId: ID): Tweet
+    deleteTweet(id: ID): Boolean
+  }
 `;
 
 const server = new ApolloServer({ typeDefs });
