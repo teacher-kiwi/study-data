@@ -1,5 +1,12 @@
 import { ApolloServer, gql } from "apollo-server";
 
-const server = new ApolloServer({});
+const typeDefs = gql`
+  type Query {
+    text: String
+    hello: String
+  }
+`;
 
-server.listen().then(({ url }) => console.log(`Running on ${url}. 🛰✔👀`));
+const server = new ApolloServer({ typeDefs });
+
+server.listen().then(({ url }) => console.log(`Running on "${url}" ✅`));
