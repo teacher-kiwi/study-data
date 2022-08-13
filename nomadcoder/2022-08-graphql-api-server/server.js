@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
+import fetch from "node-fetch";
 
 let tweets = [
   {
@@ -44,6 +45,29 @@ const typeDefs = gql`
     text: String!
     author: User
   }
+  type Movie {
+    id: Int!
+    url: String!
+    imdb_code: String!
+    title: String!
+    title_english: String!
+    title_long: String!
+    slug: String!
+    year: Int!
+    rating: Float!
+    runtime: Float!
+    genres: [String]!
+    summary: String
+    description_full: String!
+    synopsis: String
+    yt_trailer_code: String!
+    language: String!
+    background_image: String!
+    background_image_original: String!
+    small_cover_image: String!
+    medium_cover_image: String!
+    large_cover_image: String!
+  }
 
   type Query {
     allUsers: [User!]!
@@ -52,6 +76,8 @@ const typeDefs = gql`
     트윗
     """
     tweet(id: ID!): Tweet
+    allMovies: [Movie!]!
+    movie(id: String!): Movie
   }
 
   type Mutation {
@@ -68,6 +94,14 @@ const resolvers = {
     allUsers: () => users,
     allTweets: () => tweets,
     tweet: (__, { id }) => tweets.find((tweet) => tweet.id === id),
+    allMovies: () =>
+      fetch("https://yts.mx/api/v2/list_movies.json")
+        .then((res) => res.json())
+        .then((json) => json.data.movies),
+    movie: (__, { id }) =>
+      fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+        .then((res) => res.json)
+        .then((json) => json.data.movie),
   },
   Mutation: {
     postTweet: (__, { text, userId }) => {
