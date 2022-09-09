@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-38xy8sk*6bxed0cudfk99hzx!qa=oe0wyvs9@c5l(1@u3mabi_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".ssambox.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["study.ssambox.com", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ['http://study.ssambox.com']
+CSRF_TRUSTED_ORIGINS = ['http://study.ssambox.com', 'https://study.ssambox.com']
 
 # Application definition
 
