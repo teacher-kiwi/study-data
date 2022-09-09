@@ -11,3 +11,9 @@
 [얄코 홈페이지](https://www.yalco.kr/lectures/)
 
 1. yalco-javascript-graphql-apollo : 얄팍한 GraphQL & Apollo 강좌
+
+## "백앤드를 위한 DRF with 파이썬"으로 공부하기!
+
+[전체 소스코드](https://github.com/TaeBbong/drf_for_backend)
+
+
