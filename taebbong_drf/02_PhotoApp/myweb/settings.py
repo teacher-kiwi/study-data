@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [".ssambox.com", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ['.ssambox.com']
+CSRF_TRUSTED_ORIGINS = ['http://study.ssambox.com']
 
 # Application definition
 
