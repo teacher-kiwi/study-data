@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장고 스터디 게시판</title>
+</head>
+<body>
+  <h1>장고 스터디 게시판</h1>
+  <p>장고를 배우며 느낀점을 써보세요!</p>
+  <button><a href="{% url 'text_post' %}">글쓰기</a></button>
+  <section>
+    {% for text in texts %}
+    <div style="border: solid; width: 300px; padding: 20px; margin: 10px;">
+      <h2>{{ text.title }}</h2>
+      <h3>글쓴이: {{ text.author }}</h3>
+      <p>{{ text.text }}</p>
+      <button style="display: inline;"><a href="{% url 'text_edit' id=text.id %}">수정하기</a></button>
+      <form method="POST" action="{% url 'text_delete' id=text.id %}" style="display: inline;">
+        {% csrf_token %}
+        <button>삭제하기</button>
+      </form>
+    </div>
+    {% endfor %}
+  </section>
+</body>
+</html>
