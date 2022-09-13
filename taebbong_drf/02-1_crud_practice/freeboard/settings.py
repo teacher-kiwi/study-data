@@ -42,6 +42,7 @@ DEBUG = bool(get_secret("DEBUG"))
 
 ALLOWED_HOSTS = [".ssambox.com", "127.0.0.1"]
 
+CSRF_TRUSTED_ORIGINS = ['http://study2.ssambox.com', 'https://study2.ssambox.com']
 
 # Application definition
 
