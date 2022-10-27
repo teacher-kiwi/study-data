@@ -16,4 +16,6 @@
 
 [전체 소스코드](https://github.com/TaeBbong/drf_for_backend)
 
+## vue_study
 
+[tailwindcss 연습](./vue_study/1%EC%A3%BC%EC%B0%A8/index.html)
