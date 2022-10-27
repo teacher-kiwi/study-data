@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko" class="bg-base-300">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Podlet</title>
+  </head>
+  <body class="px-4">
+    <div class="navbar bg-base-100 my-4 shadow-xl rounded-box">
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Podlet</a>
+      </div>
+
+      <div class="flex-none gap-2">
+        <div class="dropdown dropdown-end hidden" id="logout">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://placeimg.com/80/80/people" />
+            </div>
+          </label>
+          <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-36">
+            <li class="mx-auto my-2">내 이름</li>
+            <li><a>프로필</a></li>
+            <li><a>글쓰기</a></li>
+            <li id="logoutBtn"><a>로그아웃</a></li>
+          </ul>
+        </div>
+
+        <div id="login">
+          <a class="btn">로그인</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap justify-around">
+      <!-- 사진 카드 -->
+      <div class="card card-compact w-96 bg-base-100 shadow-xl m-2">
+        <figure><img src="https://placeimg.com/400/225/nature" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">미술시간 작품1</h2>
+          <p>미술시간에 만든 작품 사진입니다.</p>
+
+          <div class="stats shadow flex flex-wrap justify-around">
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-primary"></div>
+              <div class="stat-title text-center">좋아요</div>
+              <div class="stat-value text-primary text-lg">25.6K</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-secondary"></div>
+              <div class="stat-title text-center">조회수</div>
+              <div class="stat-value text-secondary text-lg">2.6M</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2">
+              <div class="stat-figure text-secondary mx-0">
+                <div class="avatar online btn btn-ghost btn-circle">
+                  <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/128/128/people" />
+                  </div>
+                </div>
+              </div>
+              <div class="stat-title">글쓴이</div>
+              <div class="stat-value text-lg">개똥이</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 사진 카드 -->
+      <div class="card card-compact w-96 bg-base-100 shadow-xl m-2">
+        <figure><img src="https://placeimg.com/400/225/people" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">미술시간 작품2</h2>
+          <p>잘 만들었죠?</p>
+
+          <div class="stats shadow flex flex-wrap justify-around">
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-primary"></div>
+              <div class="stat-title text-center">좋아요</div>
+              <div class="stat-value text-primary text-lg">12.4K</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-secondary"></div>
+              <div class="stat-title text-center">조회수</div>
+              <div class="stat-value text-secondary text-lg">3.2M</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2">
+              <div class="stat-figure text-secondary mx-0">
+                <div class="avatar online btn btn-ghost btn-circle">
+                  <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/128/128/arch" />
+                  </div>
+                </div>
+              </div>
+              <div class="stat-title">글쓴이</div>
+              <div class="stat-value text-lg">철수</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 사진 카드 -->
+      <div class="card card-compact w-96 bg-base-100 shadow-xl m-2">
+        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">미술시간 작품3</h2>
+          <p>ㅋㅋㅋㅋ</p>
+
+          <div class="stats shadow flex flex-wrap justify-around">
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-primary"></div>
+              <div class="stat-title text-center">좋아요</div>
+              <div class="stat-value text-primary text-lg">23.5K</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-secondary"></div>
+              <div class="stat-title text-center">조회수</div>
+              <div class="stat-value text-secondary text-lg">4.2M</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2">
+              <div class="stat-figure text-secondary mx-0">
+                <div class="avatar online btn btn-ghost btn-circle">
+                  <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/128/128/space" />
+                  </div>
+                </div>
+              </div>
+              <div class="stat-title">글쓴이</div>
+              <div class="stat-value text-lg">영미</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 사진 카드 -->
+      <div class="card card-compact w-96 bg-base-100 shadow-xl m-2">
+        <figure><img src="https://placeimg.com/400/225/fire" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">미술시간 작품4</h2>
+          <p>고생했다.</p>
+
+          <div class="stats shadow flex flex-wrap justify-around">
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-primary"></div>
+              <div class="stat-title text-center">좋아요</div>
+              <div class="stat-value text-primary text-lg">23.5K</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2 justify-center flex flex-wrap flex-col">
+              <div class="stat-figure text-secondary"></div>
+              <div class="stat-title text-center">조회수</div>
+              <div class="stat-value text-secondary text-lg">4.2M</div>
+            </div>
+
+            <div class="stat w-auto px-2 py-2">
+              <div class="stat-figure text-secondary mx-0">
+                <div class="avatar online btn btn-ghost btn-circle">
+                  <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/128/128/animal" />
+                  </div>
+                </div>
+              </div>
+              <div class="stat-title">글쓴이</div>
+              <div class="stat-value text-lg">다솜</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- /사진카드들 -->
+
+    <script>
+      const loginBtn = document.querySelector("#login");
+      const logout = document.querySelector("#logout");
+      const logoutBtn = document.querySelector("#logoutBtn");
+      loginBtn.addEventListener("click", () => {
+        alert("로그인!");
+        logout.classList.remove("hidden");
+        loginBtn.classList.add("hidden");
+      });
+      logoutBtn.addEventListener("click", () => {
+        alert("로그아웃!");
+        loginBtn.classList.remove("hidden");
+        logout.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
