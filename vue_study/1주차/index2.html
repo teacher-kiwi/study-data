@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>반응형 웹사이트</title>
+  </head>
+  <body class="grid grid-rows-[1fr_2fr_10fr_1fr] sm:grid-rows-[1.5fr_10fr_1fr] lg:grid-rows-[2fr_10fr_1fr] sm:grid-cols-[1fr_3fr] lg:px-[10%] gap-2 h-screen p-2 bg-base-300">
+    <header class="sm:col-span-2 bg-primary text-primary-content flex flex-col sm:gap-2 justify-center items-center rounded-lg">
+      <h1 class="text-xl sm:text-3xl">헤더</h1>
+      <div class="text-md sm:text-xl">화면 크기를 조절해보세요!</div>
+    </header>
+
+    <nav class="bg-secondary text-secondary-content flex flex-col gap-2 justify-center items-center rounded-lg">
+      <h2 class="text-2xl">메뉴바</h2>
+    </nav>
+
+    <main class="bg-accent text-accent-content flex flex-col gap-2 justify-center items-center rounded-lg">
+      <h2 class="text-3xl">메인화면</h2>
+      <div class="text-xl">
+        <span>가로</span>
+        <span id="width"></span>
+        <span>세로</span>
+        <span id="height"></span>
+      </div>
+      <div id="device" class="text-2xl mt-2"></div>
+    </main>
+
+    <footer class="sm:col-span-2 bg-neutral text-neutral-content flex flex-col gap-2 justify-center items-center rounded-lg">
+      <h2 class="text-md sm:text-2xl">하단바</h2>
+    </footer>
+
+    <script>
+      const width = document.querySelector("#width");
+      const height = document.querySelector("#height");
+      const device = document.querySelector("#device");
+      width.innerText = window.innerWidth;
+      height.innerText = window.innerHeight;
+      device.innerText = window.innerWidth < 640 ? "모바일" : window.innerWidth < 1024 ? "태블릿" : "PC";
+      window.addEventListener("resize", () => {
+        width.innerText = window.innerWidth;
+        height.innerText = window.innerHeight;
+        device.innerText = window.innerWidth < 640 ? "모바일" : window.innerWidth < 1024 ? "태블릿" : "PC";
+      });
+    </script>
+  </body>
+</html>
