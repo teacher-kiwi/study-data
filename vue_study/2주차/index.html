@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="corporate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>야구게임</title>
+  </head>
+  <body>
+    <div class="navbar bg-base-200 w-auto mx-4 mt-2 mb-4 shadow-xl rounded-box">
+      <span class="text-xl mx-auto font-bold">추억의 야구게임</span>
+    </div>
+
+    <div class="flex justify-center">
+      <div id="btnGroup" class="w-64 grid grid-cols-3 gap-2 justify-center">
+        <div id="display" class="col-span-3 font-mono text-5xl w-full py-2 bg-neutral rounded-md text-neutral-content flex justify-around">
+          <span id="num1">_</span>
+          <span id="num2">_</span>
+          <span id="num3">_</span>
+        </div>
+        <div id="btn1" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">1</span>
+        </div>
+        <div id="btn2" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">2</span>
+        </div>
+        <div id="btn3" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">3</span>
+        </div>
+        <div id="btn4" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">4</span>
+        </div>
+        <div id="btn5" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">5</span>
+        </div>
+        <div id="btn6" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">6</span>
+        </div>
+        <div id="btn7" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">7</span>
+        </div>
+        <div id="btn8" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">8</span>
+        </div>
+        <div id="btn9" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">9</span>
+        </div>
+        <div class="h-16">
+          <span class="text-2xl"></span>
+        </div>
+        <div id="btn0" class="btn h-16 text-center rounded-md cursor-pointer bg-primary">
+          <span class="text-2xl">0</span>
+        </div>
+        <div id="backBtn" class="btn h-16 text-center rounded-md cursor-pointer bg-secondary">
+          <span class="text-2xl">←</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const num1 = document.querySelector("#num1");
+      const num2 = document.querySelector("#num2");
+      const num3 = document.querySelector("#num3");
+      const btn1 = document.querySelector("#btn1");
+      const btn2 = document.querySelector("#btn2");
+      const btn3 = document.querySelector("#btn3");
+      const btn4 = document.querySelector("#btn4");
+      const btn5 = document.querySelector("#btn5");
+      const btn6 = document.querySelector("#btn6");
+      const btn7 = document.querySelector("#btn7");
+      const btn8 = document.querySelector("#btn8");
+      const btn9 = document.querySelector("#btn9");
+      const btn0 = document.querySelector("#btn0");
+      const backBtn = document.querySelector("#backBtn");
+
+      const handleNumClick = (e) => {
+        const btn = e.currentTarget;
+        const num = btn.children[0].innerText;
+        if (!btn.classList.contains("cursor-not-allowed")) {
+          if (isNaN(parseInt(num1.innerText))) num1.innerText = num;
+          else if (isNaN(parseInt(num2.innerText))) num2.innerText = num;
+          else if (isNaN(parseInt(num3.innerText))) num3.innerText = num;
+          else return;
+          btn.classList.add("bg-neutral", "cursor-not-allowed");
+        }
+      };
+
+      const handleBackClick = (e) => {
+        displayNum1 = parseInt(num1.innerText);
+        displayNum2 = parseInt(num2.innerText);
+        displayNum3 = parseInt(num3.innerText);
+        if (!isNaN(displayNum3)) {
+          document.querySelector(`#btn${displayNum3}`).classList.remove("bg-neutral", "cursor-not-allowed");
+          num3.innerText = "_";
+        } else if (!isNaN(displayNum2)) {
+          document.querySelector(`#btn${displayNum2}`).classList.remove("bg-neutral", "cursor-not-allowed");
+          num2.innerText = "_";
+        } else if (!isNaN(displayNum1)) {
+          document.querySelector(`#btn${displayNum1}`).classList.remove("bg-neutral", "cursor-not-allowed");
+          num1.innerText = "_";
+        }
+      };
+
+      btn1.addEventListener("click", handleNumClick);
+      btn2.addEventListener("click", handleNumClick);
+      btn3.addEventListener("click", handleNumClick);
+      btn4.addEventListener("click", handleNumClick);
+      btn5.addEventListener("click", handleNumClick);
+      btn6.addEventListener("click", handleNumClick);
+      btn7.addEventListener("click", handleNumClick);
+      btn8.addEventListener("click", handleNumClick);
+      btn9.addEventListener("click", handleNumClick);
+      btn0.addEventListener("click", handleNumClick);
+      backBtn.addEventListener("click", handleBackClick);
+    </script>
+  </body>
+</html>
