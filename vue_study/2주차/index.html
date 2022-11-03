@@ -245,19 +245,19 @@
           newP.innerText = `${inning}회! ${num[0]}${num[1]}${num[2]} ${s}S ${b}B!`;
           result.appendChild(newP);
           result.scrollTop = result.scrollHeight;
-          if (inning === 9) {
-            isEnd = true;
-            const endP = document.createElement("p");
-            endP.innerText = `당신은 졌습니다.`;
-            result.appendChild(endP);
-            result.scrollTop = result.scrollHeight;
-          } else if (JSON.stringify(answer) === JSON.stringify(num)) {
+          if (JSON.stringify(answer) === JSON.stringify(num)) {
             isEnd = true;
             const endP = document.createElement("p");
             endP.innerText = `승리하였습니다.`;
             result.appendChild(endP);
             result.scrollTop = result.scrollHeight;
             pop();
+          } else if (inning === 9) {
+            isEnd = true;
+            const endP = document.createElement("p");
+            endP.innerText = `당신은 졌습니다.`;
+            result.appendChild(endP);
+            result.scrollTop = result.scrollHeight;
           }
         }
       };
