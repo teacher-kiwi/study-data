@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="cupcake">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>틱택토</title>
+  </head>
+  <body>
+    <div id="display" class="bg-neutral-content w-64 m-4 rounded-md p-2 text-center text-2xl">O의 차례입니다.</div>
+    <div class="m-4 grid grid-cols-3 grid-rows-3 bg-green-100 border border-green-700 w-64 h-64">
+      <div id="btn1" class="border border-neutral flex justify-center items-center">
+        <input value="256" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn2" class="border border-neutral flex justify-center items-center">
+        <input value="128" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn3" class="border border-neutral flex justify-center items-center">
+        <input value="64" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn4" class="border border-neutral flex justify-center items-center">
+        <input value="32" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn5" class="border border-neutral flex justify-center items-center">
+        <input value="16" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn6" class="border border-neutral flex justify-center items-center">
+        <input value="8" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn7" class="border border-neutral flex justify-center items-center">
+        <input value="4" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn8" class="border border-neutral flex justify-center items-center">
+        <input value="2" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+      <div id="btn9" class="border border-neutral flex justify-center items-center">
+        <input value="1" hidden />
+        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      </div>
+    </div>
+    <div id="btnRe" class="mx-4 w-64 btn btn-primary hidden">다시 하기</div>
+
+    <script>
+      // 틱택토
+      const goal = [0b111000000, 0b000111000, 0b000000111, 0b100100100, 0b010010010, 0b001001001, 0b100010001, 0b001010100];
+
+      const check = (player) => {
+        for (let i = 0; i < goal.length; i++) {
+          if ((player & goal[i]) === goal[i]) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      let choice = [];
+      let end = false;
+      let player1 = 0;
+      let player2 = 0;
+      const order = ["O", "X"];
+
+      // DOM
+      const btnList = [];
+      for (let i = 1; i < 10; i++) btnList.push(document.querySelector(`#btn${i}`));
+      const btnRe = document.querySelector("#btnRe");
+      const display = document.querySelector("#display");
+
+      const handleClick = (e) => {
+        if (!end) {
+          const div = e.currentTarget;
+          const val = parseInt(div.querySelector("input").value);
+          if (!choice.includes(val)) {
+            const myOrder = order[choice.length % 2];
+            const nextOrder = order[(choice.length + 1) % 2];
+            div.querySelector(`#${myOrder}`).classList.remove("hidden");
+            choice.push(val);
+            choice.length % 2 === 0 ? (player1 += val) : (player2 += val);
+            display.innerText = `${nextOrder}의 차례입니다.`;
+            if (check(player1) || check(player2)) {
+              display.innerText = `${myOrder}가 이겼습니다.`;
+              end = true;
+              btnRe.classList.remove("hidden");
+            } else if (choice.length === 9) {
+              display.innerText = `비겼습니다.`;
+              end = true;
+              btnRe.classList.remove("hidden");
+            }
+          }
+        }
+      };
+      btnList.forEach((btn) => btn.addEventListener("click", handleClick));
+
+      const handleRestart = () => {
+        choice = [];
+        end = false;
+        player1 = 0;
+        player2 = 0;
+
+        btnList.forEach((btn) => {
+          btn.children["O"].classList.add("hidden");
+          btn.children["X"].classList.add("hidden");
+        });
+        display.innerText = `O의 차례입니다.`;
+        btnRe.classList.add("hidden");
+      };
+      btnRe.addEventListener("click", handleRestart);
+    </script>
+  </body>
+</html>
