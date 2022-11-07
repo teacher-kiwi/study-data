@@ -9,55 +9,63 @@
     <title>틱택토</title>
   </head>
   <body>
-    <div id="display" class="bg-neutral-content w-64 m-4 rounded-md p-2 text-center text-2xl">O의 차례입니다.</div>
-    <div class="m-4 grid grid-cols-3 grid-rows-3 bg-green-100 border border-green-700 w-64 h-64">
-      <div id="btn1" class="border border-neutral flex justify-center items-center">
-        <input value="256" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+    <div class="w-64 m-auto p-4">
+      <div class="w-64 text-center text-5xl">틱택토</div>
+      <div class="flex justify-around items-center w-64 my-4">
+        <div>혼자하기</div>
+        <input id="mode" type="checkbox" class="toggle toggle-lg bg-fuchsia-400 border-fuchsia-400" />
+        <div>같이하기</div>
       </div>
-      <div id="btn2" class="border border-neutral flex justify-center items-center">
-        <input value="128" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+      <div id="display" class="bg-neutral-content w-64 my-4 rounded-md p-2 text-center text-2xl">당신의 차례입니다.</div>
+      <div class="my-4 grid grid-cols-3 grid-rows-3 bg-green-100 border border-green-700 w-64 h-64">
+        <div id="btn1" class="border border-neutral flex justify-center items-center">
+          <input value="256" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn2" class="border border-neutral flex justify-center items-center">
+          <input value="128" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn3" class="border border-neutral flex justify-center items-center">
+          <input value="64" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn4" class="border border-neutral flex justify-center items-center">
+          <input value="32" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn5" class="border border-neutral flex justify-center items-center">
+          <input value="16" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn6" class="border border-neutral flex justify-center items-center">
+          <input value="8" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn7" class="border border-neutral flex justify-center items-center">
+          <input value="4" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn8" class="border border-neutral flex justify-center items-center">
+          <input value="2" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
+        <div id="btn9" class="border border-neutral flex justify-center items-center">
+          <input value="1" hidden />
+          <div id="O" class="text-5xl text-info font-bold hidden">O</div>
+          <div id="X" class="text-5xl text-error font-bold hidden">X</div>
+        </div>
       </div>
-      <div id="btn3" class="border border-neutral flex justify-center items-center">
-        <input value="64" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn4" class="border border-neutral flex justify-center items-center">
-        <input value="32" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn5" class="border border-neutral flex justify-center items-center">
-        <input value="16" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn6" class="border border-neutral flex justify-center items-center">
-        <input value="8" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn7" class="border border-neutral flex justify-center items-center">
-        <input value="4" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn8" class="border border-neutral flex justify-center items-center">
-        <input value="2" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
-      <div id="btn9" class="border border-neutral flex justify-center items-center">
-        <input value="1" hidden />
-        <div id="O" class="text-5xl text-info font-bold hidden">O</div>
-        <div id="X" class="text-5xl text-error font-bold hidden">X</div>
-      </div>
+      <div id="btnRe" class="w-64 btn btn-primary text-xl hidden">다시 하기</div>
     </div>
-    <div id="btnRe" class="mx-4 w-64 btn btn-primary hidden">다시 하기</div>
 
     <script>
       // 틱택토
@@ -76,31 +84,95 @@
       let end = false;
       let player1 = 0;
       let player2 = 0;
+      let solo = true;
+      let userTurn = true;
       const order = ["O", "X"];
+
+      const minmax = (p1, p2, turn) => {
+        if (check(p2)) return turn ? 1 : -1;
+
+        board = p1 | p2;
+        if (board === 511) return 0;
+
+        const w = [];
+        const m = [1, 2, 4, 8, 16, 32, 64, 128, 256];
+        for (let i = 0; i < m.length; i++) {
+          if ((board & m[i]) === 0) {
+            w.push(m[i]);
+          }
+        }
+        const temp = [];
+        for (let j = 0; j < w.length; j++) {
+          temp.push(minmax(p2, p1 | w[j], !turn));
+        }
+
+        if (turn) {
+          return Math.min(...temp);
+        } else {
+          return Math.max(...temp);
+        }
+      };
 
       // DOM
       const btnList = [];
       for (let i = 1; i < 10; i++) btnList.push(document.querySelector(`#btn${i}`));
       const btnRe = document.querySelector("#btnRe");
       const display = document.querySelector("#display");
+      const mode = document.querySelector("#mode");
 
       const handleClick = (e) => {
         if (!end) {
           const div = e.currentTarget;
-          const val = parseInt(div.querySelector("input").value);
-          if (!choice.includes(val)) {
+          const userVal = parseInt(div.querySelector("input").value);
+          if (solo && !choice.includes(userVal)) {
+            // 혼자하기 모드
+            if (userTurn) {
+              // 유저 턴
+              userTurn = false;
+              div.querySelector("#O").classList.remove("hidden");
+              choice.push(userVal);
+              player1 += userVal;
+              display.innerText = "컴퓨터 차례입니다.";
+              if (check(player1) || choice.length === 9) {
+                display.innerText = check(player1) ? "당신이 이겼습니다." : "비겼습니다.";
+                end = true;
+                btnRe.classList.remove("hidden");
+              }
+              // 컴퓨터 턴
+              setTimeout(() => {
+                userTurn = true;
+                if (!end) {
+                  const w = [];
+                  const m = [1, 2, 4, 8, 16, 32, 64, 128, 256];
+                  for (let i = 0; i < m.length; i++) if (((player1 | player2) & m[i]) === 0) w.push(m[i]);
+                  const temp = [];
+                  for (let j = 0; j < w.length; j++) temp.push(minmax(player1, player2 | w[j], true));
+                  let next = temp.map((x, i) => (x === Math.max(...temp) ? i : null)).filter((x) => x !== null);
+                  const val = w[next[Math.floor(Math.random() * next.length)]];
+                  choice.push(val);
+                  player2 += val;
+                  document.querySelector(`#btn${m.length - m.indexOf(val)} > #X`).classList.remove("hidden");
+
+                  display.innerText = "당신의 차례입니다.";
+                  if (check(player1) || check(player2)) {
+                    display.innerText = "컴퓨터가 이겼습니다.";
+                    end = true;
+                    btnRe.classList.remove("hidden");
+                  }
+                }
+              }, 500);
+            }
+          } else if (!solo && !choice.includes(userVal)) {
+            // 둘이하기 모드
             const myOrder = order[choice.length % 2];
             const nextOrder = order[(choice.length + 1) % 2];
             div.querySelector(`#${myOrder}`).classList.remove("hidden");
-            choice.push(val);
-            choice.length % 2 === 0 ? (player1 += val) : (player2 += val);
+            choice.push(userVal);
+            choice.length % 2 === 0 ? (player1 += userVal) : (player2 += userVal);
             display.innerText = `${nextOrder}의 차례입니다.`;
-            if (check(player1) || check(player2)) {
-              display.innerText = `${myOrder}가 이겼습니다.`;
-              end = true;
-              btnRe.classList.remove("hidden");
-            } else if (choice.length === 9) {
-              display.innerText = `비겼습니다.`;
+
+            if (check(player1) || check(player2) || choice.length === 9) {
+              display.innerText = choice.length === 9 ? "비겼습니다." : `${myOrder}가 이겼습니다.`;
               end = true;
               btnRe.classList.remove("hidden");
             }
@@ -119,10 +191,16 @@
           btn.children["O"].classList.add("hidden");
           btn.children["X"].classList.add("hidden");
         });
-        display.innerText = `O의 차례입니다.`;
+        display.innerText = solo ? "당신의 차례입니다." : "O의 차례입니다.";
         btnRe.classList.add("hidden");
       };
       btnRe.addEventListener("click", handleRestart);
+
+      const handleMode = () => {
+        solo = !mode.checked;
+        handleRestart();
+      };
+      mode.addEventListener("change", handleMode);
     </script>
   </body>
 </html>
