@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <div id="app">
+      <h1>{{ message }}</h1>
+
+      <hr />
+
+      <h2>v-on으로 data 수정</h2>
+      <p>숫자 세기: {{counter.count}}</p>
+      <button @click="increment">숫자 UP!</button>
+      <button @click="decrement">숫자 DOWN!</button>
+
+      <hr />
+
+      <h2 :class="titleClass">v-bind를 이용해 attribute 컨트롤</h2>
+
+      <hr />
+
+      <h2>v-on + v-bind = v-model</h2>
+      <input v-model="text" type="text" placeholder="여기에 입력!" />
+      <h3>{{text}}</h3>
+
+      <hr />
+
+      <h2>v-if 와 v-else</h2>
+      <button @click="toggle">{{ isClicked ? "O" : "X" }}</button>
+      <h3 v-if="isClicked">O</h3>
+      <h3 v-else>X</h3>
+
+      <hr />
+
+      <h2>v-for</h2>
+      <form @submit.prevent="addTodo">
+        <input v-model="newTodo" placeholder="할 일 입력" />
+        <button>할 일 추가</button>
+      </form>
+      <ul>
+        <li v-for="todo in filteredTodos" :key="todo.id">
+          <input type="checkbox" v-model="todo.done" />
+          <span :class="{ done: todo.done }"> {{ todo.text }} </span>
+          <button @click="removeTodo(todo)">❌</button>
+        </li>
+      </ul>
+      <button @click="hideCompleted = !hideCompleted">{{ hideCompleted ? "모두 보이기" : "완료된 항목 숨기기" }}</button>
+
+      <hr />
+    </div>
+
+    <script>
+      let id = 0;
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            message: "안녕 Vue!",
+            counter: { count: 0 },
+            titleClass: ["red", "underline"],
+            text: "",
+            isClicked: true,
+            newTodo: "",
+            todos: [
+              { id: id++, text: "drf 배우기", done: true },
+              { id: id++, text: "vue 배우기", done: false },
+              { id: id++, text: "프로젝트 진행하기", done: false },
+            ],
+            hideCompleted: false,
+          };
+        },
+        computed: {
+          filteredTodos() {
+            return this.hideCompleted ? this.todos.filter((t) => !t.done) : this.todos;
+          },
+        },
+        methods: {
+          increment() {
+            this.counter.count++;
+          },
+          decrement() {
+            this.counter.count--;
+          },
+          toggle() {
+            this.isClicked = !this.isClicked;
+          },
+          addTodo() {
+            this.todos.push({ id: id++, text: this.newTodo });
+            this.newTodo = "";
+          },
+          removeTodo(todo) {
+            this.todos = this.todos.filter((t) => t !== todo);
+          },
+        },
+      }).mount("#app");
+    </script>
+    <style>
+      .red {
+        color: red;
+      }
+      .underline {
+        text-decoration: underline;
+      }
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
+  </body>
+</html>
