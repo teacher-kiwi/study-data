@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나만의 앱</title>
+
+    <style>
+      body {
+        width: 700px;
+        margin: auto;
+      }
+
+      header {
+        background-color: beige;
+        text-align: center;
+        padding: 10px;
+        margin: 10px;
+      }
+
+      nav {
+        font-size: large;
+        font-weight: 900;
+        border: 1px solid;
+        padding: 10px;
+      }
+
+      main {
+        margin-top: 50px;
+        text-align: center;
+      }
+      main input {
+        width: 500px;
+        font-size: larger;
+        border-radius: 20px;
+        padding: 5px 20px;
+        margin-top: 20px;
+      }
+
+      main a {
+        display: inline-block;
+        width: 222px;
+        height: 52px;
+        background-position: 0 -158px;
+        background-repeat: no-repeat;
+        background-image: url(https://s.pstatic.net/static/www/img/uit/sp_main_947f65.png);
+        background-size: 442px 428px;
+      }
+
+      footer {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <h1>나만의 앱</h1>
+      </a>
+    </header>
+
+    <nav>
+      <p>나만의 앱 목록</p>
+      <ol>
+        <a href="./google.html">
+          <li>검색엔진</li>
+        </a>
+        <a href="./dday.html">
+          <li>D-day 계산기</li>
+        </a>
+      </ol>
+    </nav>
+
+    <main>
+      <div>
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+        <form action="https://google.com/search" method="GET">
+          <input type="text" name="q" />
+        </form>
+        <br />
+        <a></a>
+        <form action="https://search.naver.com/search.naver/" method="GET">
+          <input type="text" name="query" />
+        </form>
+      </div>
+    </main>
+
+    <footer>Copyright 2022 김우일</footer>
+  </body>
+</html>
