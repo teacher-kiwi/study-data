@@ -18,4 +18,5 @@
 
 ## vue_study
 
-[tailwindcss 연습](./vue_study/1%EC%A3%BC%EC%B0%A8/index.html)
+[tailwindcss 연습](https://teacher-kiwi.github.io/study-data//vue_study/1%EC%A3%BC%EC%B0%A8/index.html)
+
