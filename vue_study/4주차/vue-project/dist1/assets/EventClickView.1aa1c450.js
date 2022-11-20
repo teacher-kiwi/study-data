@@ -1,0 +1,1 @@
+import{k as n,o,c,a as t,t as r}from"./index.803e5145.js";const p={__name:"EventClickView",setup(s){const e=n(0),a=()=>{e.value++};return(l,u)=>(o(),c("div",null,[t("p",null,r(e.value),1),t("button",{onClick:a},"Add 1")]))}};export{p as default};
