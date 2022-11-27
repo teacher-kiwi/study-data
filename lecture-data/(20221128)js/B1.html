@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" class="bg-base-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>초간단 MBTI 테스트</title>
+  </head>
+  <body class="flex justify-center">
+    <div class="artboard phone-2 artboard-horizontal artboard-demo m-4" style="height: auto">
+      <h1 class="text-2xl font-bold m-4">초간단 MBTI 테스트</h1>
+      <p class="text-lg font-bold">문제가 생겼을 때 당신의 대처법은?</p>
+
+      <div class="grid grid-cols-[1fr_auto_1fr] justify-center">
+        <label class="label cursor-pointer ml-auto">
+          <span>말이 많아짐</span>
+          <input type="radio" name="radio-1" class="radio radio-primary mx-2" value="I" />
+        </label>
+        <span class="m-auto">VS</span>
+        <label class="label cursor-pointer mr-auto">
+          <input type="radio" name="radio-1" class="radio radio-primary mx-2" value="E" />
+          <span>생각이 많아짐</span>
+        </label>
+
+        <label class="label cursor-pointer ml-auto">
+          <span>그럴 수 있지</span>
+          <input type="radio" name="radio-2" class="radio radio-primary mx-2" value="I" />
+        </label>
+        <span class="m-auto">VS</span>
+        <label class="label cursor-pointer mr-auto">
+          <input type="radio" name="radio-2" class="radio radio-primary mx-2" value="E" />
+          <span>어떻게 그럴 수 있지</span>
+        </label>
+
+        <label class="label cursor-pointer ml-auto">
+          <span>선 공감 후 이해</span>
+          <input type="radio" name="radio-3" class="radio radio-primary mx-2" value="I" />
+        </label>
+        <span class="m-auto">VS</span>
+        <label class="label cursor-pointer mr-auto">
+          <input type="radio" name="radio-3" class="radio radio-primary mx-2" value="E" />
+          <span>이해가 돼야 공감을 하든 말든</span>
+        </label>
+
+        <label class="label cursor-pointer ml-auto">
+          <span>(바로) 처리함</span>
+          <input type="radio" name="radio-4" class="radio radio-primary mx-2" value="I" />
+        </label>
+        <span class="m-auto">VS</span>
+        <label class="label cursor-pointer mr-auto">
+          <input type="radio" name="radio-4" class="radio radio-primary mx-2" value="E" />
+          <span>(닥쳐서) 처리함</span>
+        </label>
+      </div>
+
+      <button id="btn" class="btn btn-primary btn-wide my-2">제출</button>
+
+      <div class="w-5/6 border-2 rounded-lg m-4 text-center font-bold px-2 py-8">당신의 MBTI는 OOOO입니다.</div>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+
+      btn.addEventListener("click", () => {
+        console.log("버튼을 눌렀습니다.");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" class="bg-base-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>원둘레와 원넓이</title>
+  </head>
+  <body class="flex justify-center">
+    <div class="artboard phone-1 artboard-demo m-4" style="height: auto">
+      <h1 class="text-2xl font-bold m-4">원둘레와 원넓이</h1>
+      <input id="radius" type="text" placeholder="구하고 싶은 원의 반지름(cm)" class="input input-bordered input-primary w-5/6 max-w-xs my-2" />
+      <button id="btn" class="btn btn-primary btn-wide my-2">계산</button>
+      <div id="text" class="w-5/6 border-2 rounded-lg m-4 text-center font-bold px-2 py-8">원둘레는 약 00cm입니다.<br />원넓이는 약 00cm²입니다.</div>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+      const text = document.querySelector("#text");
+      const radius = document.querySelector("#radius");
+
+      btn.addEventListener("click", () => {
+        const round = Math.round(radius.value * Math.PI * 2);
+        const area = Math.round(radius.value * radius.value * Math.PI);
+        text.innerText = `원둘레는 약 ${round}cm입니다. \n 원넓이는 약 ${area}cm²입니다.`;
+      });
+    </script>
+  </body>
+</html>

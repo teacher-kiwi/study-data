@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" class="bg-base-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>맥도날드 주문</title>
+  </head>
+  <body class="flex justify-center">
+    <div class="artboard phone-2 artboard-demo m-4" style="height: auto">
+      <h1 class="text-2xl font-bold m-4">맥도날드 주문</h1>
+
+      <p class="text-lg font-bold mt-4">버거</p>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="3300" />
+        <span class="label-text font-bold ml-2">치즈버거: 3300원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="5700" />
+        <span class="label-text font-bold ml-2">빅맥: 5700원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="5300" />
+        <span class="label-text font-bold ml-2">더블 불고기버거: 5300원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="6800" />
+        <span class="label-text font-bold ml-2">1955 버거: 6800원</span>
+      </label>
+
+      <p class="text-lg font-bold mt-4">사이드</p>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="2700" />
+        <span class="label-text font-bold ml-2">코울슬로: 2700원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="2000" />
+        <span class="label-text font-bold ml-2">애플 파이: 2000원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="2600" />
+        <span class="label-text font-bold ml-2">후렌치후라이: 2600원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="3000" />
+        <span class="label-text font-bold ml-2">맥너겟: 3000원</span>
+      </label>
+
+      <p class="text-lg font-bold mt-4">음료</p>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="2200" />
+        <span class="label-text font-bold ml-2">코카-콜라: 2200원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="3200" />
+        <span class="label-text font-bold ml-2">아메리카노: 3200원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="3500" />
+        <span class="label-text font-bold ml-2">바닐라 쉐이크: 3500원</span>
+      </label>
+      <label class="label cursor-pointer">
+        <input type="checkbox" class="checkbox checkbox-primary" value="1900" />
+        <span class="label-text font-bold ml-2">생수: 1900원</span>
+      </label>
+
+      <button id="btn" class="btn btn-primary btn-wide my-2">계산</button>
+
+      <div class="w-5/6 border-2 rounded-lg m-4 text-center font-bold px-2 py-8">주문하신 총 금액은 0000원입니다.</div>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+
+      btn.addEventListener("click", () => {
+        console.log("버튼을 눌렀습니다.");
+      });
+    </script>
+  </body>
+</html>

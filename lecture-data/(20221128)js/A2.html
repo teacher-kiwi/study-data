@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" class="bg-base-200">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>이름과 나이 출력하기</title>
+  </head>
+  <body class="flex justify-center">
+    <div class="artboard phone-1 artboard-demo m-4" style="height: auto">
+      <h1 class="text-2xl font-bold m-4">이름과 나이 출력하기</h1>
+      <input id="name" type="text" placeholder="이름" class="input input-bordered input-primary w-5/6 max-w-xs my-2" />
+      <input id="year" type="text" placeholder="태어난 연도" class="input input-bordered input-primary w-5/6 max-w-xs" />
+      <button id="btn" class="btn btn-primary btn-wide my-2">제출</button>
+      <div id="text" class="w-5/6 border-2 rounded-lg m-4 text-center font-bold px-2 py-8">OO은/는 OO살입니다.</div>
+    </div>
+
+    <script>
+      const name = document.querySelector("#name");
+      const year = document.querySelector("#year");
+      const btn = document.querySelector("#btn");
+      const text = document.querySelector("#text");
+
+      btn.addEventListener("click", () => {
+        const result = `${name.value}은/는 ${2022 - year.value + 1}살입니다.`;
+        text.innerText = result;
+      });
+    </script>
+  </body>
+</html>
