@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Nanum+Gothic+Coding:wght@700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body::after {
+  background-image: url("https://source.unsplash.com/random");
+  background-size: cover;
+  filter: blur(4px) grayscale(70%);
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  margin: 30px;
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 15px 15px rgba(255, 255, 255, 0.3);
+}
+
+#clock {
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 100%;
+}
+
+#todo {
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 100%;
+}
+
+.scroll-container {
+  margin: 15px;
+  height: 80vh;
+  width: 80%;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  box-shadow: 0px 0px 15px 15px rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-area {
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.date {
+  margin-top: 5rem;
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 5rem;
+}
+
+.time {
+  margin-bottom: 5rem;
+  font-family: "Nanum Gothic Coding", monospace;
+  font-size: 8rem;
+}
+
+.input {
+  font-family: "Jua", sans-serif;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 3rem;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#weather {
+  margin-top: 100px;
+  margin-bottom: 90px;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.hello {
+  font-size: 3.5rem;
+  font-family: "Jua", sans-serif;
+}
+
+li {
+  font-size: 2rem;
+  font-family: "Jua", sans-serif;
+  display: flex;
+  margin: 10px;
+}

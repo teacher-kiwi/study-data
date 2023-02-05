@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/style.css" rel="stylesheet" />
+    <title>우아한 투두리스트</title>
+  </head>
+  <body>
+    <header>우아한 투두리스트</header>
+    <main class="scroll-container">
+      <div id="clock" class="scroll-area">
+        <div class="date">날짜</div>
+        <div class="time">시간</div>
+        <div class="login">
+          <form id="login">
+            <input class="input" type="text" placeholder="이름을 입력해주세요." />
+          </form>
+          <div id="hello" hidden>
+            <span class="hello"></span>
+            <button id="logout">❌</button>
+          </div>
+        </div>
+        <div id="weather">날씨</div>
+        <div>🔽 투두리스트</div>
+      </div>
+      <div id="todo" class="scroll-area">
+        <div style="margin-bottom: 30px">🔼 메인화면</div>
+        <form id="todo-form">
+          <input class="input" type="text" placeholder="할 일을 입력해주세요." />
+        </form>
+        <ul id="todo-list"></ul>
+      </div>
+    </main>
+
+    <script src="./src/clock.js"></script>
+    <script src="./src/login.js"></script>
+    <script src="./src/weather.js"></script>
+    <script src="./src/todo.js"></script>
+  </body>
+</html>
