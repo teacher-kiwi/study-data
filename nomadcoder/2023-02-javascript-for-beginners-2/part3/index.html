@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>짤 메이커</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>짤 생성기</h1>
+
+    <div>
+      <div>
+        <h2>짤 선택하기</h2>
+        <button id="meme-btn">랜덤 짤 불러오기 🎰</button>
+        <label for="file-input">
+          내 짤 올리기 📤
+          <input type="file" id="file-input" accept="image/*" hidden />
+        </label>
+      </div>
+
+      <div>
+        <h2>짤 꾸미기</h2>
+      </div>
+
+      <div id="field">
+        <label for="draw-mode">
+          <input type="radio" name="mode" id="draw-mode" value="draw" checked />
+          그리기 ✍
+        </label>
+        <label for="text-mode">
+          <input type="radio" name="mode" id="text-mode" value="text" />
+          텍스트 💬
+        </label>
+        <button id="reset-btn">초기화 ❌</button>
+      </div>
+
+      <div id="tools">
+        <div id="draw-tool">
+          <input id="line-width" type="range" min="1" max="9" />
+
+          <div id="color-options" style="display: flex">
+            <input id="color" type="color" />
+            <div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
+            <div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
+            <div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
+            <div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
+            <div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
+            <div class="color-option" style="background-color: #9b59b6" data-color="#9b59b6"></div>
+            <div class="color-option" style="background-color: #ecf0f1" data-color="#ecf0f1"></div>
+            <div class="color-option" style="background-color: #95a5a6" data-color="#95a5a6"></div>
+            <div class="color-option" style="background-color: #34495e" data-color="#34495e"></div>
+          </div>
+        </div>
+
+        <div id="text-tool" hidden>
+          <input id="font-size" type="range" min="1" max="9" />
+          <input id="text-input" type="text" placeholder="글자를 입력 후 원하는 위치를 클릭하세요." />
+        </div>
+      </div>
+    </div>
+
+    <canvas></canvas>
+    <canvas hidden></canvas>
+    <script src="./app.js"></script>
+    <script src="./memeList.js"></script>
+  </body>
+</html>
