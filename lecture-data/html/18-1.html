@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상시 평가</title>
+    <link rel="icon" href="./icon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
+  </head>
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li><a href="./table.html">목차</a></li>
+          <li><a href="./index.html">학습하기</a></li>
+          <li><a href="./quiz.html">문제풀기</a></li>
+          <li><a href="./form.html">평가</a></li>
+        </ul>
+      </nav>
+
+      <h1>오늘의 학습을 평가해볼까요?</h1>
+
+      <article>
+        <form action="submission.html">
+          <section>
+            <label for="name">이름을 입력하세요.</label>
+            <input type="text" name="name" id="name" />
+          </section>
+
+          <section>
+            <label for="password">비밀번호를 입력하세요.</label>
+            <input type="password" name="password" id="password" />
+          </section>
+
+          <section>
+            <label for="number">학번을 입력하세요.</label>
+            <input type="number" name="number" id="number" min="1" max="25" />
+          </section>
+
+          <section>
+            <label for="self-test">자신의 학습 정도를 선택하세요.</label>
+            <br />
+
+            <input type="range" name="self-test" id="self-test" min="1" max="5" />
+          </section>
+
+          <section>
+            <span>원의 넓이를 구할 때 필요한 것을 모두 고르세요.</span>
+            <br />
+            <input type="checkbox" name="q1" id="q1-1" value="q1-1" />
+            <label for="q1-1">원주율</label>
+            <br />
+            <input type="checkbox" name="q1" id="q1-2" value="q1-2" />
+            <label for="q1-2">반지름</label>
+            <br />
+            <input type="checkbox" name="q1" id="q1-3" value="q1-3" />
+            <label for="q1-3">색깔</label>
+          </section>
+
+          <section>
+            <span>원의 넓이를 바르게 구한 것을 고르세요.</span>
+            <br />
+            <input type="radio" name="q2" id="q2-1" value="q2-1" />
+            <label for="q2-1">(원주) X (반지름)</label>
+            <br />
+            <input type="radio" name="q2" id="q2-2" value="q2-2" />
+            <label for="q2-2">(원주율) X (지름)</label>
+            <br />
+            <input type="radio" name="q2" id="q2-3" value="q2-3" />
+            <label for="q2-3">(반지름) X (반지름) X (원주율)</label>
+          </section>
+
+          <section>
+            <label for="q3">오늘 학습한 내용으로 넓이를 잴 수 없는 물건을 고르세요.</label>
+            <select name="q3" id="q3">
+              <option value="pizza">피자</option>
+              <option value="cd">CD</option>
+              <option value="book">수학교과서</option>
+            </select>
+          </section>
+
+          <section>
+            <label for="q4">오늘 학습한 내용으로 넓이를 재고 싶은 물건을 쓰세요.</label>
+            <input list="answer" name="q4" id="q4" autocomplete="off" />
+            <datalist id="answer">
+              <option value="접시"></option>
+              <option value="자전거바퀴"></option>
+            </datalist>
+          </section>
+
+          <section>
+            <label for="result">오늘 학습하며 배운 점을 써보세요.</label>
+            <br />
+            <textarea name="result" id="result" cols="50" rows="5"></textarea>
+          </section>
+
+          <section>
+            <input type="submit" value="제출" />
+          </section>
+        </form>
+      </article>
+    </main>
+  </body>
+</html>
