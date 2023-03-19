@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랜덤뽑기</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap");
+
+      #container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(auto-fill, 1fr);
+        height: 75vh;
+      }
+      .student {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #000;
+        margin: 5px;
+        padding: 5px;
+        font-size: 2rem;
+        background: #2c1c44;
+        color: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      #select-btn {
+        margin-top: 10px;
+      }
+
+      * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        overflow: hidden;
+      }
+      #effect-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        perspective: 1500px;
+      }
+      #card {
+        text-align: center;
+        position: relative;
+        display: block;
+        max-width: 600px;
+        width: 600px;
+        height: 400px;
+        background: #3f2860;
+        overflow: hidden;
+        box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.4);
+        box-shadow: 0.25em 0.25em 0px 0px rgba(0, 0, 0, 0.3);
+
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        overflow: visible;
+      }
+      .text {
+        position: absolute;
+        top: 0;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        color: #e49bd4;
+        word-wrap: break-word;
+      }
+      p {
+        font-weight: 400;
+        font-size: 1em;
+      }
+      h1 {
+        width: 100%;
+        height: 100%;
+        line-height: 350px;
+        font-size: 6em;
+        font-weight: 900;
+        position: relative;
+        margin: 0;
+      }
+
+      /* FOR HOVER 
+---------------------------------------*/
+      .front,
+      .back {
+        background: #3f2860;
+        width: 100%;
+        height: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        position: absolute;
+        backface-visibility: hidden;
+        overflow: hidden;
+      }
+      .back {
+        z-index: 10;
+        transform: rotateY(180deg);
+      }
+      /*
+#container:hover #card{
+	transform: rotateY(-180deg);
+}
+*/
+      .back p {
+        line-height: normal;
+        position: relative;
+        margin: 0 5%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      @media only screen and (max-width: 600px) {
+        h1 {
+          line-height: 175px;
+        }
+        #card {
+          width: 300px;
+          height: 400px;
+        }
+      }
+      .firework-grp {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        color: white;
+        color: #535396;
+      }
+      .firework-grp2 {
+        transform: rotate(180deg);
+        color: #2c1c44;
+        z-index: 6;
+      }
+      .firework-grp3 {
+        transform: rotate(-75deg);
+        color: #e339bd;
+        z-index: 7;
+      }
+      .firework {
+        font-size: 10px;
+        display: block;
+        width: 8.5em;
+        height: 8.5em;
+        position: absolute;
+      }
+
+      /* SIZES
+------------------------------------*/
+      .size05 {
+        transform: scale(0.5);
+      }
+      .size08 {
+        transform: scale(0.8);
+      }
+      .size13 {
+        transform: scale(1.3);
+      }
+      .size15 {
+        transform: scale(1.5);
+      }
+      .size18 {
+        transform: scale(1.8);
+      }
+      .size20 {
+        transform: scale(2);
+      }
+
+      /* POSITION
+------------------------------------*/
+      .pos1 {
+        left: 56%;
+        top: 65%;
+      }
+      .pos2 {
+        left: 25%;
+        top: 15%;
+      }
+      .pos3 {
+        left: 50%;
+        top: 25%;
+      }
+      .pos4 {
+        left: -5%;
+        top: 50%;
+      }
+      .pos5 {
+        left: 90%;
+        top: 65%;
+      }
+      .pos6 {
+        left: 35%;
+        top: 75%;
+      }
+      .pos7 {
+        left: 5%;
+        top: -5%;
+      }
+      .pos8 {
+        left: 75%;
+        top: 20%;
+      }
+
+      /* FIREWORK 
+------------------------------------*/
+      .drops-grp {
+        display: block;
+        width: 8.5em;
+        height: 8.5em;
+        position: absolute;
+      }
+      .drops-grp2 {
+        display: block;
+        width: 8.5em;
+        height: 8.5em;
+        position: absolute;
+        transform: rotate(45deg);
+      }
+      .drop {
+        display: block;
+        width: 1em;
+        height: 2em;
+        overflow: hidden;
+        position: absolute;
+        opacity: 0;
+      }
+      .drop:before {
+        content: "";
+        display: block;
+        width: 1em;
+        height: 1em;
+        background: currentColor;
+        border-radius: 50%;
+      }
+      .drop:after {
+        content: "";
+        display: block;
+        position: relative;
+        top: -0.4em;
+        width: 0;
+        height: 0;
+        border-top: 1.4em solid currentColor;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+      }
+      .drop-1 {
+        left: 3.75em;
+        top: 0;
+        animation: drop1anim 1s ease-in-out infinite;
+      }
+      .drop-2 {
+        top: 3.25em;
+        right: 0;
+        animation: drop2anim 1s ease-in-out infinite;
+      }
+      .drop-3 {
+        left: 3.75em;
+        bottom: 0;
+        animation: drop3anim 1s ease-in-out infinite;
+      }
+      .drop-4 {
+        top: 3.25em;
+        left: 0;
+        animation: drop4anim 1s ease-in-out infinite;
+      }
+      .firework-2 .drop-1 {
+        animation-delay: 0.5s;
+      }
+      .firework-2 .drop-2 {
+        animation-delay: 0.5s;
+      }
+      .firework-2 .drop-3 {
+        animation-delay: 0.5s;
+      }
+      .firework-2 .drop-4 {
+        animation-delay: 0.5s;
+      }
+
+      /* FIREWORK DELAY
+------------------------------------*/
+      .delay1 .drop-1 {
+        animation-delay: 0.25s;
+      }
+      .delay1 .drop-2 {
+        animation-delay: 0.25s;
+      }
+      .delay1 .drop-3 {
+        animation-delay: 0.25s;
+      }
+      .delay1 .drop-4 {
+        animation-delay: 0.25s;
+      }
+
+      .delay2 .drop-1 {
+        animation-delay: 0.75s;
+      }
+      .delay2 .drop-2 {
+        animation-delay: 0.75s;
+      }
+      .delay2 .drop-3 {
+        animation-delay: 0.75s;
+      }
+      .delay2 .drop-4 {
+        animation-delay: 0.75s;
+      }
+
+      /* keyframes
+------------------------------------*/
+      @keyframes drop1anim {
+        0% {
+          top: 3.25em;
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        25% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          top: -0.75em;
+          opacity: 0;
+          transform: scale(0.3);
+        }
+      }
+      @keyframes drop2anim {
+        0% {
+          right: 3.75em;
+          opacity: 0;
+          transform: scale(0.3) rotate(90deg);
+        }
+        25% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1) rotate(90deg);
+        }
+        100% {
+          right: -0.25em;
+          opacity: 0;
+          transform: scale(0.3) rotate(90deg);
+        }
+      }
+      @keyframes drop3anim {
+        0% {
+          bottom: 3.25em;
+          opacity: 0;
+          transform: scale(0.3) rotate(180deg);
+        }
+        25% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1) rotate(180deg);
+        }
+        100% {
+          bottom: -0.75em;
+          opacity: 0;
+          transform: scale(0.3) rotate(180deg);
+        }
+      }
+      @keyframes drop4anim {
+        0% {
+          left: 3.75em;
+          opacity: 0;
+          transform: scale(0.3) rotate(-90deg);
+        }
+        25% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1) rotate(-90deg);
+        }
+        100% {
+          left: -0.25em;
+          opacity: 0;
+          transform: scale(0.3) rotate(-90deg);
+        }
+      }
+    </style>
+
+    <style></style>
+  </head>
+  <body>
+    <main class="container">
+      <div id="container">
+        <div class="student" id="1">학생1</div>
+        <div class="student" id="2">학생2</div>
+        <div class="student" id="3">학생3</div>
+        <div class="student" id="4">학생4</div>
+        <div class="student" id="5">학생5</div>
+        <div class="student" id="6">학생6</div>
+        <div class="student" id="7">학생7</div>
+        <div class="student" id="8">학생8</div>
+        <div class="student" id="9">학생9</div>
+        <div class="student" id="10">학생10</div>
+        <div class="student" id="11">학생11</div>
+        <div class="student" id="12">학생12</div>
+        <div class="student" id="13">학생13</div>
+        <div class="student" id="14">학생14</div>
+        <div class="student" id="15">학생15</div>
+        <div class="student" id="16">학생16</div>
+        <div class="student" id="17">학생17</div>
+        <div class="student" id="18">학생18</div>
+        <div class="student" id="19">학생19</div>
+        <div class="student" id="20">학생20</div>
+        <div class="student" id="21">학생21</div>
+        <div class="student" id="22">학생22</div>
+        <div class="student" id="23">학생23</div>
+        <div class="student" id="24">학생24</div>
+        <div class="student" id="25">학생25</div>
+        <div class="student" id="26">학생26</div>
+        <div class="student" id="27">학생27</div>
+        <div class="student" id="28">학생28</div>
+        <div class="student" id="29">학생29</div>
+        <div class="student" id="30">학생30</div>
+        <div class="student" id="31">학생31</div>
+      </div>
+      <button id="select-btn">뽑기</button>
+      <dialog id="effect-container">
+        <div id="card">
+          <div class="front">
+            <div class="firework-grp">
+              <div class="firework size05 pos1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size08 pos2 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework pos3 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size15 pos4">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size18 pos5 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size20 pos6 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size13 pos7">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size05 pos8">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text">
+              <h1 id="text" style="color: #e49bd4"></h1>
+            </div>
+
+            <div class="firework-grp firework-grp2">
+              <div class="firework size05 pos1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size08 pos2 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework pos3 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size15 pos4">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size18 pos5 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size20 pos6 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size13 pos7">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size05 pos8">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+            </div>
+            <div class="firework-grp firework-grp3">
+              <div class="firework size05 pos1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size08 pos2 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework pos3 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size15 pos4">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size18 pos5 delay1">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size20 pos6 delay2">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size13 pos7">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+              <div class="firework size05 pos8">
+                <div class="drops-grp">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+                <div class="drops-grp drops-grp2">
+                  <span class="drop drop-1"></span>
+                  <span class="drop drop-2"></span>
+                  <span class="drop drop-3"></span>
+                  <span class="drop drop-4"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="back">
+
+					<div class="text">
+						<p>Belle et heureuse année !<br>-<br>Beautiful and happy new year!</p>
+					</div>
+
+				</div>-->
+        </div>
+      </dialog>
+    </main>
+    <script>
+      const container = document.querySelector("#container");
+      const btn = document.querySelector("#select-btn");
+      const modal = document.querySelector("dialog");
+      const students = [];
+      for (let i = 0; i < container.children.length; i++) students.push(i + 1);
+      container.addEventListener("click", (e) => {
+        if (Array.from(e.target.classList).includes("student")) {
+          const id = parseInt(e.target.id);
+          const student = document.getElementById(`${id}`);
+          const pick = students.findIndex((s) => s === id);
+          if (pick === -1) return;
+          students.splice(pick, 1);
+          text.innerText = student.innerText;
+          student.style.color = "#2c1c44";
+          modal.setAttribute("open", "");
+        }
+      });
+      btn.addEventListener("click", (e) => {
+        if (students.length === 0) return;
+        pick = Math.floor(Math.random() * students.length);
+        const student = document.getElementById(`${students[pick]}`);
+        students.splice(pick, 1);
+        text.innerText = student.innerText;
+        student.style.color = "#2c1c44";
+        modal.setAttribute("open", "");
+      });
+      modal.addEventListener("click", () => modal.removeAttribute("open"));
+    </script>
+  </body>
+</html>
