@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  fastapi:
+    image: asdkant/fastapi-hello-world:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/app

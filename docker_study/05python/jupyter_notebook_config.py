@@ -1,0 +1,1 @@
+c.NotebookApp.password = os.environ.get('JUPYTER_PASSWORD')

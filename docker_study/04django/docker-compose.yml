@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7 
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: djdocker
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      TZ: 'Asia/Seoul'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci  
+    ports:
+      - 3306:3306
+    volumes:
+      - ./myvolume:/var/lib/mysql
+  app:
+    build: .
+    ports:
+      - 9000:80
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    depends_on:
+      - db
+  adminer:
+    image: adminer:latest
+    container_name: adminer_cname
+    restart: unless-stopped
+    ports:
+      - 8000:8080
+    depends_on:
+      - db
+    environment:
+      ADMINER_DEFAULT_SERVER: db

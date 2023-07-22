@@ -1,0 +1,26 @@
+version: '3'
+services:
+  python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - 8888:8888
+    environment:
+      - CHROME_DRIVER_PATH=/usr/local/bin/chromedriver
+      - JUPYTER_TOKEN=12345678
+    privileged: true      
+    # depends_on:
+    #   - selenium-chrome
+  # selenium-chrome:
+  #   image: selenium/standalone-chrome:latest
+  #   ports:
+  #     - 4444:4444
+  # jupyter-notebook:
+  #   image: jupyter/datascience-notebook
+  #   volumes:
+  #     - ./notebooks:/home/jovyan/work
+  #   ports:
+  #     - 8889:8888

@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'KyoboHand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.overLayer{
+    z-index:100;
+    display: none;
+    width: 400px;
+    height: 250px;
+    border: 2px solid gray;
+    background-color:#FFF;
+    padding:10px;
+    font-size:20px;
+    line-height:20px;
+    font-weight:100;
+    font-family: 'KyoboHand';
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+td {
+    color:white;
+    text-shadow: 2px 2px 2px black;
+}
+
+#video {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: 120%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.box {
+    display: inline-block;
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    height: 0;
+    z-index: -1;
+}
+
+p {
+	font-family: 'KyoboHand';
+    font-size: 26px;
+}
+
+.p_new {
+    background-color: rgba( 255, 167, 167, 0.3 );
+}
+
+.p_title {
+    position: sticky;
+    background-color: rgba( 050, 002, 204, 0.3 );
+    font-size:35px;
+    font-family: 'KyoboHand';
+}
+
+.p_title1 {
+    position: sticky;
+    background-color: rgba( 050, 002, 204, 0.3 );
+    font-size:25px;
+    font-family: 'KyoboHand';
+}
+
+.p_title2 {
+    position: sticky;
+    background-color: rgba( 050, 002, 204, 0.3 );
+    font-size:18px;
+    font-family: 'KyoboHand';
+}
+
+.p1 {
+    background-color: rgba( 000, 102, 204, 0.3 );
+}
+
+.p2 {
+    background-color: rgba( 102, 255, 204, 0.3 );
+}
+
+.p3 {
+    background-color: rgba( 000, 102, 204, 0.3 );
+}
+
+.p4 {
+    background-color: rgba( 102, 255, 204, 0.3 );
+}
+
+.p5 {
+    background-color: rgba( 000, 102, 204, 0.3 );
+}
+
+.p6 {
+    background-color: rgba( 050, 050, 255, 0.3 );
+}
+
+.p7 {
+    background-color: rgba(232, 247, 147, 0.3);
+}
+
+#background {
+    z-index: -1;
+}

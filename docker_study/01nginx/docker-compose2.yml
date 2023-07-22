@@ -1,0 +1,19 @@
+version: '3.9'
+
+services: 
+  web: 
+    image: nginx
+    ports: 
+      - "80:80"
+    container_name: nginx_cname   #컨테이너 생성 이름 지정
+    restart: unless-stopped       #컨테이너를 직접 stop시키기 전에는 계속 재시작.
+    volumes:                           #현재의 하위 디렉토리인 data와  
+      - ./data:/usr/share/nginx/html   #nginx 컨테이너 내부의 기본 웹폴더인 
+  web2: 
+    image: nginx
+    ports: 
+      - "81:80"
+    container_name: nginx_cname2   #컨테이너 생성 이름 지정
+    restart: unless-stopped       #컨테이너를 직접 stop시키기 전에는 계속 재시작.
+    volumes:                           #현재의 하위 디렉토리인 data와  
+      - ./data2:/usr/share/nginx/html   #nginx 컨테이너 내부의 기본 웹폴더인 

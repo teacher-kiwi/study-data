@@ -1,0 +1,110 @@
+version: '3.9'
+
+networks: 
+  mung_net:
+    driver: bridge
+
+services:
+  front_nginx:
+    container_name: front_nginx_cname
+    #image: nginx:1.23.2       
+    #build: ./docker/front/
+    image: mungkhs/nginxwaf:1.5
+    restart: always
+    privileged: true
+    ports:
+      - "80:80"   #src-front(react),backend(nodejs)
+      - "81:81"   #build-front(react),backend(nodejs)
+      - "82:82"   #reactonly 
+      - "83:83"   #vanilla
+      - "5000:5000"
+    volumes:
+      - ./docker/front/default.conf:/usr/local/nginx/conf.d/default.conf
+      - ./docker/front/nginx.conf:/usr/local/nginx/conf/nginx.conf      
+      - ./docker/front/modsecurity.conf:/usr/local/nginx/conf/modsecurity.conf          
+      - ./docker/front/modsec_includes.conf:/usr/local/nginx/conf/modsec_includes.conf  
+      - ./docker/front/crs-setup.conf:/usr/local/nginx/conf/rules/crs-setup.conf        
+      - ./docker/fail2ban/jail.conf:/etc/fail2ban/jail.conf                             
+      - ./docker/fail2ban/jail.conf:/etc/fail2ban/jail.local                            
+      - ./docker/fail2ban/filter.d/:/etc/fail2ban/filter.d/                             
+      - ./log/logs/:/usr/local/nginx/logs/
+      - ./log/log/:/var/log/      
+    depends_on:
+      - frontend1
+      - frontend2
+      - vanilla
+    networks:
+      - mung_net
+  backend:
+    build:
+      context: ./www/back
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - ./www/back:/app
+      - /app/node_modules
+    #ports:
+    #  - "5000:5000"
+    expose:
+      - "5000"      
+    networks:
+      - mung_net      
+  frontend1:
+    build:
+      context: ./www/front
+      dockerfile: Dockerfile
+    container_name: frontend1
+    restart: unless-stopped
+    depends_on: 
+      - backend
+    volumes:
+      - ./www/front:/app
+      - /app/node_modules
+    environment:
+      - WDS_SOCKET_PORT=0
+    expose:
+      - "3000"
+    networks:
+      - mung_net      
+  frontend2:
+    image: nginx:1.23.2
+    container_name: frontend2
+    restart: unless-stopped
+    depends_on: 
+      - backend
+    volumes:
+      - ./www/react_only/build:/app
+      - ./docker/conf/default.conf:/etc/nginx/conf.d/default.conf      
+    expose:
+      - "81"
+    networks:
+      - mung_net            
+  react_only:
+    build:
+      context: ./www/react_only
+      dockerfile: Dockerfile
+    container_name: react_only
+    restart: unless-stopped
+    volumes:
+      - ./www/react_only:/app
+      - /app/node_modules
+    environment:
+      - WDS_SOCKET_PORT=0
+    #ports:
+    #  - "3001:3001"  
+    expose:
+      - "3001"
+    networks:
+      - mung_net      
+  vanilla:
+    image: nginx:1.23.2
+    container_name: vanilla
+    restart: unless-stopped
+    volumes:
+      - ./www/vanilla:/app
+      - ./docker/conf/default.conf:/etc/nginx/conf.d/default.conf      
+    expose:
+      - "80"
+    networks:
+      - mung_net            
