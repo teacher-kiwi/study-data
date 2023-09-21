@@ -1,6 +1,5 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'pico.min.css' %}">
-
+{% extends "base.html" %}
+{% block content %}
 <!-- 질문 -->
 <article>
     <header>
@@ -28,3 +27,4 @@
         <textarea name="content" id="content" rows="10"></textarea>
     <input type="submit" vaule="답변등록" />
 </form>
+{% endblock %}
