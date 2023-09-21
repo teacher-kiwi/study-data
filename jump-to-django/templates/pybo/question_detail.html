@@ -1,19 +1,30 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-<h1>{{ question.subject }}</h1>
-<div>
+<link rel="stylesheet" type="text/css" href="{% static 'pico.min.css' %}">
+
+<!-- 질문 -->
+<article>
+    <header>
+        <h2>{{ question.subject }}</h2>
+    </header>
     {{ question.content }}
-</div>
-<h5>{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
-<div>
-    <ul>
-        {% for answer in question.answer_set.all %}
-            <li>{{ answer.content }}</li>
-        {% endfor %}
-    </ul>
-</div>
+    <footer>{{ question.create_date }}</footer>
+</article>
+
+<!-- 답변 -->
+<details open>
+    <summary>{{ question.answer_set.count }}개의 답변이 있습니다.</summary>
+    {% for answer in question.answer_set.all %}
+    <p>
+        {{ answer.content }}
+        {{ answer.create_date}}
+    </p>
+    {% endfor %}
+</details>
+
+<!-- 답변 등록 -->
 <form action="{% url 'pybo:answer_create' question.id %}" method="post">
 {% csrf_token %}
-    <textarea name="content" id="content" rows="15"></textarea>
+    <label for="content">답변내용</label>
+        <textarea name="content" id="content" rows="10"></textarea>
     <input type="submit" vaule="답변등록" />
 </form>
