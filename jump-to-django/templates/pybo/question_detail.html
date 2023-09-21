@@ -22,7 +22,20 @@
 
 <!-- 답변 등록 -->
 <form action="{% url 'pybo:answer_create' question.id %}" method="post">
-{% csrf_token %}
+    {% csrf_token %}
+    {% if form.errors %}
+    <details open>
+        <summary role="button" class="secondary">경고!</summary>
+        <p>
+            {% for field in form %}
+                {% if field.errors %}
+                    {{ field.label }}
+                    {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+        </p>
+    </details>
+    {% endif %}
     <label for="content">답변내용</label>
         <textarea name="content" id="content" rows="10"></textarea>
     <input type="submit" vaule="답변등록" />

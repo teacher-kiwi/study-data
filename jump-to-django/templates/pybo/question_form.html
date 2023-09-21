@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <!-- 에러 관리 -->
+    {% if form.errors %}
+    <details open>
+        <summary role="button" class="secondary">경고!</summary>
+        <p>
+            {% for field in form %}
+            {% if field.errors %}
+            {{ field.label }}
+            {{ field.errors }}
+            {% endif %}
+            {% endfor %}
+        </p>
+    </details>
+    {% endif %}
+    <!-- /에러 관리 -->
+    <label for="subject">제목</label>
+    <input type="text" name="subject" id="subject" value="{{ form.subject.value | default_if_none:''}}">
+    <label for="content">내용</label>
+    <textarea type="text" name="content" id="content" row="10">{{ form.content.value | default_if_none:"" }}</textarea>
+    <button type="submit">저장하기</button>
+</form>
+{% endblock %}
