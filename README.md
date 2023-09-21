@@ -7,3 +7,5 @@
 ## ["백앤드를 위한 DRF with 파이썬"으로 공부하기!](https://github.com/teacher-kiwi/study-data/tree/main/taebbong_drf)
 
 ## [vue_study(with. 쪼랩)](https://github.com/teacher-kiwi/study-data/tree/main/vue_study)
+
+## ["점프 투 장고"로 공부하기!](https://github.com/teacher-kiwi/study-data/tree/main/jump-to-djnago)
