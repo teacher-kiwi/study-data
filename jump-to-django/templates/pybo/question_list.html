@@ -26,5 +26,18 @@
     </tbody>
 </table>
 
+<div class="grid">
+    {% for page_number in question_list.paginator.page_range %}
+    {% if page_number >= question_list.number|add:-3 and page_number <= question_list.number|add:3 %}
+    {% if page_number == question_list.number %}
+    <div><a href="?page={{ page_number }}"><button>{{ page_number }}</button></a></div>
+    {% else %}
+    <div><a href="?page={{ page_number }}"><button class="secondary">{{ page_number }}</button></a></div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
+
+
 <a href="{% url 'pybo:question_create' %}">질문 등록하기</a>
 {% endblock %}

@@ -1,13 +1,17 @@
 from django.http import HttpRequest, HttpResponseNotAllowed
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm
 
 
-def index(request):
+def index(request: HttpRequest):
+    page = request.GET.get("page", 1)
     question_list = Question.objects.order_by("-id")
-    context = {"question_list": question_list}
+    paginator = Paginator(question_list, 10)
+    page_obj = paginator.get_page(page)
+    context = {"question_list": page_obj}
     return render(request, "pybo/question_list.html", context)
 
 
