@@ -1,8 +1,13 @@
 <nav>
     <ul>
-      <li><strong><a href="{% url 'pybo:index' %}">Pybo</a></strong></li>
+        <li><strong><a href="{% url 'pybo:index' %}">Pybo</a></strong></li>
     </ul>
     <ul>
-      <li><a href="#" role="button">로그인</a></li>
+        {% if user.is_authenticated %}
+        <li>{{ user.username }}</li>
+        <li><a href="{% url 'common:logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'common:login' %}">로그인</a></li>
+        {% endif %}
     </ul>
   </nav>

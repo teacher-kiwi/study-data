@@ -3,19 +3,7 @@
 <form method="post">
     {% csrf_token %}
     <!-- 에러 관리 -->
-    {% if form.errors %}
-    <details open>
-        <summary role="button" class="secondary">경고!</summary>
-        <p>
-            {% for field in form %}
-            {% if field.errors %}
-            {{ field.label }}
-            {{ field.errors }}
-            {% endif %}
-            {% endfor %}
-        </p>
-    </details>
-    {% endif %}
+    {% include "form_errors.html" %}
     <!-- /에러 관리 -->
     <label for="subject">제목</label>
     <input type="text" name="subject" id="subject" value="{{ form.subject.value | default_if_none:''}}">
