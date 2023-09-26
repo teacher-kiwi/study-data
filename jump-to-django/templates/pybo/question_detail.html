@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+{% load pybo_filter %}
 {% block content %}
+{% if messages %}
+{% for message in messages %}
+<mark>{{ message.tags }}</mark>
+<ul><li>{{ message.message }}</li></ul>
+{% endfor %}
+{% endif %}
 <!-- 질문 -->
 <article>
     <header>
@@ -7,9 +14,19 @@
             <h4>{{ question.subject }}</h2>
             <h5>글쓴이: {{ question.author.username }}</h3>
         </hgroup>
+        {% if request.user == question.author %}
+        <a href="{% url 'pybo:question_modify' question.id %}">수정</a>
+        <a href="javascript:if(confirm('정말로 삭제하시겠습니까?')){location.href=`{% url 'pybo:question_delete' question.id %}`}">삭제</a>
+        {% endif %}
     </header>
     {{ question.content }}
-    <footer>{{ question.create_date }}</footer>
+    <footer>
+        작성일시: {{ question.create_date }}
+        {% if question.modify_date|timestamp != question.create_date|timestamp %}
+        <br />
+        수정일시: {{ question.modify_date }}
+        {% endif %}
+    </footer>
 </article>
 
 <!-- 답변 -->
@@ -19,8 +36,20 @@
     <p>
         <div class="grid">
             <div>{{ answer.content }}</div>
+            <div>
+                {% if request.user == answer.author %}
+                <a href="{% url 'pybo:answer_modify' answer.id %}">수정</a>
+                <a href="javascript:if(confirm('정말 삭제하시겠습니까?')){location.href=`{% url 'pybo:answer_delete' answer.id %}`}">삭제</a>
+                {% endif %}
+            </div>
             <div>{{ answer.author.username }}</div>
-            <div>{{ answer.create_date}}</div>
+            <div>
+                작성일시: {{ answer.create_date}}
+                {% if answer.modify_date|timestamp != answer.create_date|timestamp %}
+                <br />
+                수정일시: {{ answer.modify_date }}
+                {% endif %}
+            </div>
         </div>
     </p>
     {% endfor %}
@@ -36,3 +65,6 @@
     <input type="submit" vaule="답변등록" />
 </form>
 {% endblock %}
+
+{% block script %}
+{% endblock%}

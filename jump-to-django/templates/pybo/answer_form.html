@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <!-- 에러 관리 -->
+    {% include "form_errors.html" %}
+    <!-- /에러 관리 -->
+    <label for="content">답변 내용</label>
+    <textarea type="text" name="content" id="content" row="10">{{ form.content.value | default_if_none:"" }}</textarea>
+    <button type="submit">저장하기</button>
+</form>
+{% endblock %}
