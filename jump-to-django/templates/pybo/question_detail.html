@@ -25,7 +25,8 @@
     {% csrf_token %}
     {% include "form_errors.html" %}
     <label for="content">답변내용</label>
-        <textarea name="content" id="content" rows="10"></textarea>
+        <textarea name="content" id="content" rows="10" 
+            {% if not user.is_authenticated %}disabled{% endif %}></textarea>
     <input type="submit" vaule="답변등록" />
 </form>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponseNotAllowed
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm
@@ -21,25 +22,31 @@ def detail(request, question_id):
     return render(request, "pybo/question_detail.html", context)
 
 
+@login_required(login_url="common:login")
 def answer_create(request: HttpRequest, question_id):
-    if request.method != "POST":
-        return HttpResponseNotAllowed("Only POST is possible.")
     question = get_object_or_404(Question, pk=question_id)
-    form = AnswerForm(request.POST)
-    if form.is_valid():
-        answer: Answer = form.save(commit=False)
-        answer.question = question
-        answer.save()
-        return redirect("pybo:detail", question_id=question.id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer: Answer = form.save(commit=False)
+            answer.question = question
+            answer.author = request.user
+            answer.save()
+            return redirect("pybo:detail", question_id=question.id)
+    else:
+        form = AnswerForm()
     context = {"question": question, "form": form}
     return render(request, "pybo/question_detail.html", context)
 
 
+@login_required(login_url="common:login")
 def question_create(request: HttpRequest):
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
-            form.save()
+            question: Question = form.save(commit=False)
+            question.author = request.user
+            question.save()
             return redirect("pybo:index")
     else:
         form = QuestionForm()
