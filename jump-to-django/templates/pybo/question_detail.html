@@ -3,7 +3,10 @@
 <!-- 질문 -->
 <article>
     <header>
-        <h2>{{ question.subject }}</h2>
+        <hgroup>
+            <h4>{{ question.subject }}</h2>
+            <h5>글쓴이: {{ question.author.username }}</h3>
+        </hgroup>
     </header>
     {{ question.content }}
     <footer>{{ question.create_date }}</footer>
@@ -14,8 +17,11 @@
     <summary>{{ question.answer_set.count }}개의 답변이 있습니다.</summary>
     {% for answer in question.answer_set.all %}
     <p>
-        {{ answer.content }}
-        {{ answer.create_date}}
+        <div class="grid">
+            <div>{{ answer.content }}</div>
+            <div>{{ answer.author.username }}</div>
+            <div>{{ answer.create_date}}</div>
+        </div>
     </p>
     {% endfor %}
 </details>
